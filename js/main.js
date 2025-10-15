@@ -1,4 +1,4 @@
-// JavaScript to dynamically populate the product catalog with carousel functionality
+// JavaScript to dynamically populate the product catalog with Bootstrap components
 const products = [
   {
     name: "Produto 1",
@@ -41,7 +41,7 @@ yearSpan.textContent = new Date().getFullYear();
 // Populate the product catalog dynamically
 products.forEach((product) => {
   const productCard = document.createElement("div");
-  productCard.className = "product";
+  productCard.className = "col-md-6 col-lg-4";
 
   const carouselId = `carousel-${product.name.replace(/\s+/g, "-").toLowerCase()}`;
 
@@ -49,42 +49,37 @@ products.forEach((product) => {
     .map(
       (image, index) => `
         <div class="carousel-item${index === 0 ? " active" : ""}">
-          <img src="${image}" alt="${product.name}" class="product-image" />
+          <img src="${image}" class="d-block w-100" alt="${product.name}" />
         </div>
       `
     )
     .join("");
 
   productCard.innerHTML = `
-    <div class="product-row">
-      <div id="${carouselId}" class="carousel" data-current="0">
-        ${imagesHtml}
-      </div>
-      <div class="product-body">
-        <h2 class="product-title">${product.name}</h2>
-        <p class="product-desc">${product.description}</p>
-        <div class="product-meta">
-          <span class="price">${product.price}</span>
-          <div class="actions">
-            <a href="https://wa.me/5511967856887?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20produto%20${encodeURIComponent(
-              product.name
-            )}" class="btn" target="_blank">Quero</a>
-          </div>
+    <div class="card h-100">
+      <div id="${carouselId}" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          ${imagesHtml}
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">${product.name}</h5>
+        <p class="card-text">${product.description}</p>
+        <p class="card-text fw-bold">${product.price}</p>
+        <a href="https://wa.me/5511967856887?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20produto%20${encodeURIComponent(
+          product.name
+        )}" class="btn btn-success">Quero</a>
       </div>
     </div>
   `;
 
   productsContainer.appendChild(productCard);
-
-  // Add carousel functionality
-  const carousel = productCard.querySelector(`#${carouselId}`);
-  let currentIndex = 0;
-
-  carousel.addEventListener("click", () => {
-    const items = carousel.querySelectorAll(".carousel-item");
-    items[currentIndex].classList.remove("active");
-    currentIndex = (currentIndex + 1) % items.length;
-    items[currentIndex].classList.add("active");
-  });
 });
