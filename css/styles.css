@@ -59,6 +59,14 @@ header {
   letter-spacing: -1px;
   animation: fadeInDown 0.6s ease-out;
   margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.header-main h1::before {
+  content: '🏠 ';
+  -webkit-text-fill-color: initial;
+  background: none;
+  filter: none;
 }
 
 .header-subtitle {
