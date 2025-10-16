@@ -6,7 +6,8 @@ const products = [
     description: 'Descrição detalhada do produto com características especiais e benefícios únicos.',
     price: 'R$ 99,90',
     images: ['assets/001-01.jpg', 'assets/001-02.jpg'],
-    badge: 'Novo'
+    badge: 'Novo',
+    sold: false
   },
   {
     id: '002',
@@ -14,7 +15,8 @@ const products = [
     description: 'Produto de alta qualidade com design moderno e funcionalidade excepcional.',
     price: 'R$ 149,90',
     images: ['assets/002-01.jpg'],
-    badge: 'Popular'
+    badge: 'Popular',
+    sold: false
   },
   {
     id: '003',
@@ -22,7 +24,8 @@ const products = [
     description: 'Item exclusivo com acabamento premium e garantia estendida incluída.',
     price: 'R$ 199,90',
     images: ['assets/003-01.jpg', 'assets/003-02.jpg'],
-    badge: 'Destaque'
+    badge: 'Destaque',
+    sold: true
   },
   {
     id: '004',
@@ -30,7 +33,8 @@ const products = [
     description: 'Produto com excelente custo-benefício e diversas opções de uso.',
     price: 'R$ 79,90',
     images: ['assets/004-01.jpg'],
-    badge: 'Oferta'
+    badge: 'Oferta',
+    sold: false
   },
   {
     id: '005',
@@ -38,7 +42,8 @@ const products = [
     description: 'Qualidade superior com materiais selecionados e design inovador.',
     price: 'R$ 249,90',
     images: ['assets/005-01.jpg'],
-    badge: 'Premium'
+    badge: 'Premium',
+    sold: false
   }
 ];
 
@@ -56,7 +61,13 @@ function renderProducts() {
   const container = document.getElementById('products');
   container.innerHTML = '';
 
-  products.forEach((product, index) => {
+  // Sort products: available first, sold items last
+  const sortedProducts = [...products].sort((a, b) => {
+    if (a.sold === b.sold) return 0;
+    return a.sold ? 1 : -1;
+  });
+
+  sortedProducts.forEach((product, index) => {
     const productCard = createProductCard(product, index);
     container.appendChild(productCard);
   });
@@ -70,6 +81,11 @@ function createProductCard(product, index) {
   const card = document.createElement('div');
   card.className = 'product-card';
   card.style.animationDelay = `${index * 0.1}s`;
+
+  // Add sold class if product is sold
+  if (product.sold) {
+    card.classList.add('sold');
+  }
 
   // Image carousel
   const imageContainer = createImageCarousel(product);
@@ -93,11 +109,19 @@ function createProductCard(product, index) {
   const button = document.createElement('a');
   button.className = 'btn-whatsapp';
   button.href = '#';
-  button.textContent = 'Quero Este!';
+  button.textContent = product.sold ? 'Produto Vendido' : 'Quero Este!';
   button.addEventListener('click', (e) => {
     e.preventDefault();
-    sendWhatsApp(product);
+    if (!product.sold) {
+      sendWhatsApp(product);
+    }
   });
+
+  // Disable button if sold
+  if (product.sold) {
+    button.style.opacity = '0.6';
+    button.style.cursor = 'not-allowed';
+  }
 
   body.appendChild(title);
   body.appendChild(description);
@@ -121,7 +145,13 @@ function createImageCarousel(product) {
     openModal(product, 0);
   });
 
-  if (product.badge) {
+  // Add sold badge if product is sold
+  if (product.sold) {
+    const soldBadge = document.createElement('span');
+    soldBadge.className = 'product-badge sold-badge';
+    soldBadge.textContent = 'VENDIDO';
+    container.appendChild(soldBadge);
+  } else if (product.badge) {
     const badge = document.createElement('span');
     badge.className = 'product-badge';
     badge.textContent = product.badge;

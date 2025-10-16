@@ -91,6 +91,27 @@ h1.display-4 {
   border-color: var(--primary-color);
 }
 
+.product-card.sold {
+  opacity: 0.85;
+}
+
+.product-card.sold .product-image,
+.product-card.sold .carousel-image {
+  filter: grayscale(100%);
+  opacity: 0.7;
+}
+
+.product-card.sold:hover .product-image,
+.product-card.sold:hover .carousel-image {
+  transform: scale(1.05);
+  filter: grayscale(80%);
+}
+
+.product-card.sold .product-title,
+.product-card.sold .product-price {
+  opacity: 0.7;
+}
+
 .product-image-container {
   position: relative;
   overflow: hidden;
@@ -122,6 +143,14 @@ h1.display-4 {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   box-shadow: var(--shadow-md);
+  z-index: 10;
+}
+
+.product-badge.sold-badge {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  font-size: 0.8rem;
+  padding: 8px 16px;
+  font-weight: 700;
 }
 
 .product-body {
