@@ -116,6 +116,11 @@ function createImageCarousel(product) {
   const container = document.createElement('div');
   container.className = 'product-image-container';
 
+  // Add click handler to open modal
+  container.addEventListener('click', () => {
+    openModal(product, 0);
+  });
+
   if (product.badge) {
     const badge = document.createElement('span');
     badge.className = 'product-badge';
@@ -154,7 +159,8 @@ function createImageCarousel(product) {
       const dot = document.createElement('button');
       dot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
       dot.setAttribute('aria-label', `Imagem ${index + 1}`);
-      dot.addEventListener('click', () => {
+      dot.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent modal from opening when clicking dots
         showImage(index);
       });
       dotsContainer.appendChild(dot);
@@ -212,5 +218,215 @@ function updateYear() {
   const yearElement = document.getElementById('year');
   if (yearElement) {
     yearElement.textContent = new Date().getFullYear();
+  }
+}
+
+// Modal functionality
+let currentModal = null;
+let currentModalIndex = 0;
+let modalAutoRotate = null;
+
+function openModal(product, startIndex = 0) {
+  // Create modal element
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+  modal.id = 'productModal';
+
+  const modalContent = document.createElement('div');
+  modalContent.className = 'modal-content';
+
+  // Close button
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'modal-close';
+  closeBtn.innerHTML = '×';
+  closeBtn.setAttribute('aria-label', 'Fechar');
+  closeBtn.addEventListener('click', closeModal);
+
+  // Carousel container
+  const carouselContainer = document.createElement('div');
+  carouselContainer.className = 'modal-carousel';
+
+  // Add images
+  product.images.forEach((imgSrc, index) => {
+    const img = document.createElement('img');
+    img.className = `modal-carousel-image ${index === startIndex ? 'active' : ''}`;
+    img.src = imgSrc;
+    img.alt = `${product.name} - Imagem ${index + 1}`;
+    carouselContainer.appendChild(img);
+  });
+
+  // Navigation buttons (only if multiple images)
+  if (product.images.length > 1) {
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'modal-carousel-nav prev';
+    prevBtn.innerHTML = '‹';
+    prevBtn.setAttribute('aria-label', 'Imagem anterior');
+    prevBtn.addEventListener('click', () => navigateModal(-1, product.images.length));
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'modal-carousel-nav next';
+    nextBtn.innerHTML = '›';
+    nextBtn.setAttribute('aria-label', 'Próxima imagem');
+    nextBtn.addEventListener('click', () => navigateModal(1, product.images.length));
+
+    carouselContainer.appendChild(prevBtn);
+    carouselContainer.appendChild(nextBtn);
+
+    // Dots
+    const dotsContainer = document.createElement('div');
+    dotsContainer.className = 'modal-carousel-dots';
+
+    product.images.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = `modal-carousel-dot ${index === startIndex ? 'active' : ''}`;
+      dot.setAttribute('aria-label', `Ir para imagem ${index + 1}`);
+      dot.addEventListener('click', () => goToModalImage(index, product.images.length));
+      dotsContainer.appendChild(dot);
+    });
+
+    carouselContainer.appendChild(dotsContainer);
+  }
+
+  // Product info
+  const info = document.createElement('div');
+  info.className = 'modal-info';
+
+  const title = document.createElement('h3');
+  title.className = 'modal-product-title';
+  title.textContent = product.name;
+
+  const price = document.createElement('div');
+  price.className = 'modal-product-price';
+  price.textContent = product.price;
+
+  const description = document.createElement('p');
+  description.className = 'modal-product-description';
+  description.textContent = product.description;
+
+  const whatsappBtn = document.createElement('a');
+  whatsappBtn.className = 'modal-whatsapp-btn';
+  whatsappBtn.href = '#';
+  whatsappBtn.textContent = 'Entrar em Contato';
+  whatsappBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    sendWhatsApp(product);
+  });
+
+  info.appendChild(title);
+  info.appendChild(price);
+  info.appendChild(description);
+  info.appendChild(whatsappBtn);
+
+  // Assemble modal
+  modalContent.appendChild(closeBtn);
+  modalContent.appendChild(carouselContainer);
+  modalContent.appendChild(info);
+  modal.appendChild(modalContent);
+
+  // Add to body
+  document.body.appendChild(modal);
+
+  // Store current modal reference
+  currentModal = modal;
+  currentModalIndex = startIndex;
+
+  // Show modal with slight delay for animation
+  setTimeout(() => {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+  }, 10);
+
+  // Close on background click
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Close on ESC key
+  document.addEventListener('keydown', handleModalKeyboard);
+
+  // Auto-rotate if multiple images
+  if (product.images.length > 1) {
+    startModalAutoRotate(product.images.length);
+  }
+}
+
+function closeModal() {
+  if (currentModal) {
+    currentModal.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scrolling
+
+    // Remove modal after animation
+    setTimeout(() => {
+      if (currentModal && currentModal.parentNode) {
+        currentModal.parentNode.removeChild(currentModal);
+      }
+      currentModal = null;
+    }, 300);
+
+    // Clear auto-rotate
+    if (modalAutoRotate) {
+      clearInterval(modalAutoRotate);
+      modalAutoRotate = null;
+    }
+
+    // Remove keyboard listener
+    document.removeEventListener('keydown', handleModalKeyboard);
+  }
+}
+
+function navigateModal(direction, totalImages) {
+  currentModalIndex = (currentModalIndex + direction + totalImages) % totalImages;
+  updateModalImage();
+  resetModalAutoRotate(totalImages);
+}
+
+function goToModalImage(index, totalImages) {
+  currentModalIndex = index;
+  updateModalImage();
+  resetModalAutoRotate(totalImages);
+}
+
+function updateModalImage() {
+  if (!currentModal) return;
+
+  const images = currentModal.querySelectorAll('.modal-carousel-image');
+  const dots = currentModal.querySelectorAll('.modal-carousel-dot');
+
+  images.forEach((img, i) => {
+    img.classList.toggle('active', i === currentModalIndex);
+  });
+
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === currentModalIndex);
+  });
+}
+
+function startModalAutoRotate(totalImages) {
+  modalAutoRotate = setInterval(() => {
+    currentModalIndex = (currentModalIndex + 1) % totalImages;
+    updateModalImage();
+  }, 4000);
+}
+
+function resetModalAutoRotate(totalImages) {
+  if (modalAutoRotate) {
+    clearInterval(modalAutoRotate);
+    startModalAutoRotate(totalImages);
+  }
+}
+
+function handleModalKeyboard(e) {
+  if (!currentModal) return;
+
+  if (e.key === 'Escape') {
+    closeModal();
+  } else if (e.key === 'ArrowLeft') {
+    const images = currentModal.querySelectorAll('.modal-carousel-image');
+    navigateModal(-1, images.length);
+  } else if (e.key === 'ArrowRight') {
+    const images = currentModal.querySelectorAll('.modal-carousel-image');
+    navigateModal(1, images.length);
   }
 }
