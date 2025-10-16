@@ -4,6 +4,7 @@ const products = [
     id: '001',
     name: 'Produto Premium 1',
     description: 'Descrição detalhada do produto com características especiais e benefícios únicos.',
+    originalPrice: 'R$ 129,90',
     price: 'R$ 99,90',
     images: ['assets/001-01.jpg', 'assets/001-02.jpg'],
     badge: 'Novo',
@@ -13,6 +14,7 @@ const products = [
     id: '002',
     name: 'Produto Destaque 2',
     description: 'Produto de alta qualidade com design moderno e funcionalidade excepcional.',
+    originalPrice: 'R$ 199,90',
     price: 'R$ 149,90',
     images: ['assets/002-01.jpg'],
     badge: 'Popular',
@@ -22,6 +24,7 @@ const products = [
     id: '003',
     name: 'Produto Exclusivo 3',
     description: 'Item exclusivo com acabamento premium e garantia estendida incluída.',
+    originalPrice: 'R$ 249,90',
     price: 'R$ 199,90',
     images: ['assets/003-01.jpg', 'assets/003-02.jpg'],
     badge: 'Destaque',
@@ -31,6 +34,7 @@ const products = [
     id: '004',
     name: 'Produto Especial 4',
     description: 'Produto com excelente custo-benefício e diversas opções de uso.',
+    originalPrice: 'R$ 99,90',
     price: 'R$ 79,90',
     images: ['assets/004-01.jpg'],
     badge: 'Oferta',
@@ -40,6 +44,7 @@ const products = [
     id: '005',
     name: 'Produto Premium 5',
     description: 'Qualidade superior com materiais selecionados e design inovador.',
+    originalPrice: 'R$ 299,90',
     price: 'R$ 249,90',
     images: ['assets/005-01.jpg'],
     badge: 'Premium',
@@ -102,9 +107,36 @@ function createProductCard(product, index) {
   description.className = 'product-description';
   description.textContent = product.description;
 
-  const price = document.createElement('div');
-  price.className = 'product-price';
-  price.innerHTML = `${product.price}`;
+  // Price container with original and current price
+  const priceContainer = document.createElement('div');
+  priceContainer.className = 'product-price-container';
+
+  if (product.originalPrice) {
+    const originalPrice = document.createElement('div');
+    originalPrice.className = 'product-original-price';
+    originalPrice.textContent = product.originalPrice;
+    priceContainer.appendChild(originalPrice);
+  }
+
+  // Row container for price and discount badge
+  const priceRow = document.createElement('div');
+  priceRow.className = 'product-price-row';
+
+  const currentPrice = document.createElement('div');
+  currentPrice.className = 'product-price';
+  currentPrice.textContent = product.price;
+  priceRow.appendChild(currentPrice);
+
+  // Discount badge
+  const discount = calculateDiscount(product.originalPrice, product.price);
+  if (discount) {
+    const discountBadge = document.createElement('div');
+    discountBadge.className = 'product-discount-badge';
+    discountBadge.textContent = `${discount}% OFF`;
+    priceRow.appendChild(discountBadge);
+  }
+
+  priceContainer.appendChild(priceRow);
 
   const button = document.createElement('a');
   button.className = 'btn-whatsapp';
@@ -125,7 +157,7 @@ function createProductCard(product, index) {
 
   body.appendChild(title);
   body.appendChild(description);
-  body.appendChild(price);
+  body.appendChild(priceContainer);
   body.appendChild(button);
 
   card.appendChild(imageContainer);
@@ -243,6 +275,19 @@ function sendWhatsApp(product) {
   window.open(url, '_blank');
 }
 
+// Calculate discount percentage
+function calculateDiscount(originalPrice, currentPrice) {
+  // Extract numeric values from price strings
+  const original = parseFloat(originalPrice.replace(/[^\d,]/g, '').replace(',', '.'));
+  const current = parseFloat(currentPrice.replace(/[^\d,]/g, '').replace(',', '.'));
+
+  if (original && current && original > current) {
+    const discount = ((original - current) / original * 100).toFixed(0);
+    return discount;
+  }
+  return null;
+}
+
 // Update footer year
 function updateYear() {
   const yearElement = document.getElementById('year');
@@ -329,6 +374,10 @@ function openModal(product, startIndex = 0) {
   price.className = 'modal-product-price';
   price.textContent = product.price;
 
+  const originalPrice = document.createElement('div');
+  originalPrice.className = 'modal-product-original-price';
+  originalPrice.textContent = product.originalPrice;
+
   const description = document.createElement('p');
   description.className = 'modal-product-description';
   description.textContent = product.description;
@@ -344,6 +393,7 @@ function openModal(product, startIndex = 0) {
 
   info.appendChild(title);
   info.appendChild(price);
+  info.appendChild(originalPrice);
   info.appendChild(description);
   info.appendChild(whatsappBtn);
 

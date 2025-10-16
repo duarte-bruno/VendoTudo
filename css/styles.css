@@ -176,20 +176,65 @@ h1.display-4 {
   flex-grow: 1;
 }
 
+/* Product Price Styles */
+.product-price-container {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.product-original-price {
+  font-size: 1rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  font-weight: 500;
+}
+
+.product-price-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .product-price {
   font-size: 1.75rem;
   font-weight: 800;
   color: var(--primary-color);
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
 }
 
 .product-price small {
   font-size: 0.875rem;
   color: var(--text-muted);
   font-weight: 400;
+}
+
+.product-discount-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+  white-space: nowrap;
+}
+
+/* Modal Price Styles */
+.modal-product-original-price {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.modal-product-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
 }
 
 .btn-whatsapp {
@@ -531,6 +576,14 @@ footer p {
   font-weight: 800;
   color: var(--primary-color);
   margin-bottom: 1rem;
+}
+
+.modal-product-original-price {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
 }
 
 .modal-product-description {
