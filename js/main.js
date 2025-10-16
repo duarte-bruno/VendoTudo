@@ -53,7 +53,7 @@ const products = [
 ];
 
 // WhatsApp configuration
-const WHATSAPP_NUMBER = '5511999999999'; // Replace with your WhatsApp number
+const WHATSAPP_NUMBER = '5511967856887';
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
