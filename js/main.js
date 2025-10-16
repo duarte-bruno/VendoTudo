@@ -55,6 +55,29 @@ const products = [
 // WhatsApp configuration
 const WHATSAPP_NUMBER = '5511967856887';
 
+// Google Analytics event helper
+function trackEvent(eventName, eventParams = {}) {
+  try {
+    // GA4 gtag
+    if (typeof gtag !== 'undefined') {
+      gtag('event', eventName, eventParams);
+      return;
+    }
+
+    // dataLayer (GTM) fallback
+    if (typeof window !== 'undefined' && Array.isArray(window.dataLayer)) {
+      window.dataLayer.push(Object.assign({ event: eventName }, eventParams));
+      return;
+    }
+
+    // If no analytics available, log to console (useful for local dev)
+    console.info('GA event (mock):', eventName, eventParams);
+  } catch (err) {
+    // Don't break the app if tracking fails
+    console.warn('trackEvent error:', err);
+  }
+}
+
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
   renderProducts();
@@ -145,6 +168,15 @@ function createProductCard(product, index) {
   button.addEventListener('click', (e) => {
     e.preventDefault();
     if (!product.sold) {
+      // Track interest / CTA click
+      trackEvent('product_interest_click', {
+        product_id: product.id,
+        product_name: product.name,
+        product_price: product.price,
+        product_sold: !!product.sold,
+        event_label: 'Quero Este Button'
+      });
+
       sendWhatsApp(product);
     }
   });
@@ -174,6 +206,15 @@ function createImageCarousel(product) {
 
   // Add click handler to open modal
   container.addEventListener('click', () => {
+    // Track image click
+    trackEvent('product_image_click', {
+      product_id: product.id,
+      product_name: product.name,
+      product_price: product.price,
+      product_sold: !!product.sold,
+      event_label: 'Product Image'
+    });
+
     openModal(product, 0);
   });
 
@@ -277,13 +318,17 @@ function sendWhatsApp(product) {
 
 // Calculate discount percentage
 function calculateDiscount(originalPrice, currentPrice) {
-  // Extract numeric values from price strings
-  const original = parseFloat(originalPrice.replace(/[^\d,]/g, '').replace(',', '.'));
-  const current = parseFloat(currentPrice.replace(/[^\d,]/g, '').replace(',', '.'));
+  // Guard: ensure we have price strings
+  if (!originalPrice || !currentPrice || typeof originalPrice !== 'string' || typeof currentPrice !== 'string') {
+    return null;
+  }
+
+  // Extract numeric values from price strings (e.g. 'R$ 129,90' -> 129.90)
+  const original = parseFloat(originalPrice.replace(/[^\\d,]/g, '').replace(',', '.'));
+  const current = parseFloat(currentPrice.replace(/[^\\d,]/g, '').replace(',', '.'));
 
   if (original && current && original > current) {
-    const discount = ((original - current) / original * 100).toFixed(0);
-    return discount;
+    return ((original - current) / original * 100).toFixed(0);
   }
   return null;
 }
@@ -422,6 +467,15 @@ function openModal(product, startIndex = 0) {
   whatsappBtn.addEventListener('click', (e) => {
     e.preventDefault();
     if (!product.sold) {
+      // Track modal contact click
+      trackEvent('product_contact_click', {
+        product_id: product.id,
+        product_name: product.name,
+        product_price: product.price,
+        product_sold: !!product.sold,
+        event_label: 'Modal Entrar em Contato'
+      });
+
       sendWhatsApp(product);
     }
   });
