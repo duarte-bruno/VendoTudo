@@ -366,9 +366,22 @@ function openModal(product, startIndex = 0) {
   const info = document.createElement('div');
   info.className = 'modal-info';
 
+  // Add sold class to modal content if product is sold
+  if (product.sold) {
+    modalContent.classList.add('modal-sold');
+  }
+
   const title = document.createElement('h3');
   title.className = 'modal-product-title';
   title.textContent = product.name;
+
+  // Add sold badge in modal if product is sold
+  if (product.sold) {
+    const soldBadge = document.createElement('span');
+    soldBadge.className = 'modal-sold-badge';
+    soldBadge.textContent = 'VENDIDO';
+    title.appendChild(soldBadge);
+  }
 
   // Price section with original price
   if (product.originalPrice) {
@@ -387,13 +400,15 @@ function openModal(product, startIndex = 0) {
   price.textContent = product.price;
   priceRow.appendChild(price);
 
-  // Discount badge in modal
-  const discount = calculateDiscount(product.originalPrice, product.price);
-  if (discount) {
-    const discountBadge = document.createElement('div');
-    discountBadge.className = 'modal-discount-badge';
-    discountBadge.textContent = `${discount}% OFF`;
-    priceRow.appendChild(discountBadge);
+  // Discount badge in modal (only if not sold)
+  if (!product.sold) {
+    const discount = calculateDiscount(product.originalPrice, product.price);
+    if (discount) {
+      const discountBadge = document.createElement('div');
+      discountBadge.className = 'modal-discount-badge';
+      discountBadge.textContent = `${discount}% OFF`;
+      priceRow.appendChild(discountBadge);
+    }
   }
 
   const description = document.createElement('p');
@@ -403,11 +418,20 @@ function openModal(product, startIndex = 0) {
   const whatsappBtn = document.createElement('a');
   whatsappBtn.className = 'modal-whatsapp-btn';
   whatsappBtn.href = '#';
-  whatsappBtn.textContent = 'Entrar em Contato';
+  whatsappBtn.textContent = product.sold ? 'Produto Vendido' : 'Entrar em Contato';
   whatsappBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    sendWhatsApp(product);
+    if (!product.sold) {
+      sendWhatsApp(product);
+    }
   });
+
+  // Disable button if sold
+  if (product.sold) {
+    whatsappBtn.style.opacity = '0.6';
+    whatsappBtn.style.cursor = 'not-allowed';
+    whatsappBtn.style.pointerEvents = 'none';
+  }
 
   info.appendChild(title);
   info.appendChild(priceRow);

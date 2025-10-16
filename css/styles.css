@@ -563,6 +563,31 @@ footer p {
   margin: auto;
 }
 
+/* Sold Modal Styles */
+.modal-content.modal-sold .modal-carousel-image {
+  filter: grayscale(100%);
+  opacity: 0.7;
+}
+
+.modal-content.modal-sold .modal-product-title,
+.modal-content.modal-sold .modal-product-price {
+  opacity: 0.7;
+}
+
+.modal-sold-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-left: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow-md);
+}
+
 .modal-close {
   position: absolute;
   top: 20px;
