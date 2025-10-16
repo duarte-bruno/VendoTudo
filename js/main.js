@@ -370,13 +370,31 @@ function openModal(product, startIndex = 0) {
   title.className = 'modal-product-title';
   title.textContent = product.name;
 
+  // Price section with original price
+  if (product.originalPrice) {
+    const originalPrice = document.createElement('div');
+    originalPrice.className = 'modal-product-original-price';
+    originalPrice.textContent = product.originalPrice;
+    info.appendChild(originalPrice);
+  }
+
+  // Row container for price and discount badge
+  const priceRow = document.createElement('div');
+  priceRow.className = 'modal-price-row';
+
   const price = document.createElement('div');
   price.className = 'modal-product-price';
   price.textContent = product.price;
+  priceRow.appendChild(price);
 
-  const originalPrice = document.createElement('div');
-  originalPrice.className = 'modal-product-original-price';
-  originalPrice.textContent = product.originalPrice;
+  // Discount badge in modal
+  const discount = calculateDiscount(product.originalPrice, product.price);
+  if (discount) {
+    const discountBadge = document.createElement('div');
+    discountBadge.className = 'modal-discount-badge';
+    discountBadge.textContent = `${discount}% OFF`;
+    priceRow.appendChild(discountBadge);
+  }
 
   const description = document.createElement('p');
   description.className = 'modal-product-description';
@@ -392,8 +410,7 @@ function openModal(product, startIndex = 0) {
   });
 
   info.appendChild(title);
-  info.appendChild(price);
-  info.appendChild(originalPrice);
+  info.appendChild(priceRow);
   info.appendChild(description);
   info.appendChild(whatsappBtn);
 
