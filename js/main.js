@@ -448,12 +448,13 @@ function createProductCard(product, index) {
 
   // Discount badge
   const discount = calculateDiscount(product.originalPrice, product.price);
-  if (discount) {
-    const discountBadge = document.createElement('div');
-    discountBadge.className = 'product-discount-badge';
-    discountBadge.textContent = `${discount}% OFF`;
-    priceRow.appendChild(discountBadge);
+  const discountBadge = document.createElement('div');
+  discountBadge.className = 'product-discount-badge';
+  discountBadge.textContent = `${discount}% OFF`;
+  if (Number(discount) === 0) {
+    discountBadge.classList.add('no-discount');
   }
+  priceRow.appendChild(discountBadge);
 
   priceContainer.appendChild(priceRow);
 
@@ -626,19 +627,23 @@ function sendWhatsApp(product) {
 
 // Calculate discount percentage
 function calculateDiscount(originalPrice, currentPrice) {
-  // Guard: ensure we have price strings
-  if (!originalPrice || !currentPrice || typeof originalPrice !== 'string' || typeof currentPrice !== 'string') {
-    return null;
+  // Try to parse numeric values from price strings (e.g. 'R$ 129,90' -> 129.90)
+  try {
+    const origStr = (typeof originalPrice === 'string') ? originalPrice : String(originalPrice || '');
+    const currStr = (typeof currentPrice === 'string') ? currentPrice : String(currentPrice || '');
+    const original = parseFloat(origStr.replace(/[^\d,]/g, '').replace(',', '.'));
+    const current = parseFloat(currStr.replace(/[^\d,]/g, '').replace(',', '.'));
+
+    if (Number.isFinite(original) && Number.isFinite(current) && original > 0) {
+      const discount = original > current ? Math.round((original - current) / original * 100) : 0;
+      return String(discount);
+    }
+  } catch (err) {
+    // fall through to default
   }
 
-  // Extract numeric values from price strings (e.g. 'R$ 129,90' -> 129.90)
-  const original = parseFloat(originalPrice.replace(/[^\\d,]/g, '').replace(',', '.'));
-  const current = parseFloat(currentPrice.replace(/[^\\d,]/g, '').replace(',', '.'));
-
-  if (original && current && original > current) {
-    return ((original - current) / original * 100).toFixed(0);
-  }
-  return null;
+  // Default to 0% when we can't compute a positive discount
+  return '0';
 }
 
 // Update footer year
@@ -760,15 +765,14 @@ function openModal(product, startIndex = 0) {
   priceRow.appendChild(price);
 
   // Discount badge in modal (only if not sold)
-  if (!product.sold) {
-    const discount = calculateDiscount(product.originalPrice, product.price);
-    if (discount) {
-      const discountBadge = document.createElement('div');
-      discountBadge.className = 'modal-discount-badge';
-      discountBadge.textContent = `${discount}% OFF`;
-      priceRow.appendChild(discountBadge);
-    }
+  const discountModal = calculateDiscount(product.originalPrice, product.price);
+  const discountModalBadge = document.createElement('div');
+  discountModalBadge.className = 'modal-discount-badge';
+  discountModalBadge.textContent = `${discountModal}% OFF`;
+  if (Number(discountModal) === 0) {
+    discountModalBadge.classList.add('no-discount');
   }
+  priceRow.appendChild(discountModalBadge);
 
   const description = document.createElement('p');
   description.className = 'modal-product-description';
