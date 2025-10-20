@@ -6,7 +6,7 @@ const products = [
     description: 'Apple iPad Air 2ª Geração, 64Gb de armazenamento, cor cinza espacial, carregador original (sem cabo), 2Gb de memória ram, tela: 9.7 ", wifi, perfeito estado de uso e consevação e capa protetora azul marinho de brinde.',
     originalPrice: 'R$ 899,90',
     price: 'R$ 299,90',
-    images: ['assets/001-01.jpg', 'assets/001-02.jpg', 'assets/001-03.jpg'],
+    images: 3,
     badge: 'Quase novo',
     sold: false
   },
@@ -16,7 +16,7 @@ const products = [
     description: 'Apple Watch Series 3 (gps) 38mm, cor cinza espacial, pulseira original M e S, cabo de carregamento original, caixa original com manual, funcionando perfeitamente mas com algumas marcas de uso na tela.',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 3,
     badge: 'Usado',
     sold: false
   },
@@ -26,8 +26,8 @@ const products = [
     description: 'Mesa Digitalizadora One By Wacom CTL-472, Área de trabalho de 15.2 cm x 9.5 cm, Resolução da imagem: 5080 dpi, Inclui cabo USB.',
     originalPrice: 'R$ 149,90',
     price: 'R$ 69,90',
-    images: ['assets/003-01.jpg', 'assets/003-02.jpg', 'assets/003-03.jpg', 'assets/003-04.jpg'],
-    badge: 'Usado',
+    images: 4,
+    badge: 'Quase novo',
     sold: false
   },
   {
@@ -36,17 +36,17 @@ const products = [
     description: 'Modelo XE303C12-AD1BR, Capacidade de disco SSD 16 GB, memória RAM 4 GB, tela 15 ", Sistema operacional Chrome OS',
     originalPrice: 'R$ 299,90',
     price: 'R$ 89,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 4,
     badge: 'Usado',
     sold: false
   },
   {
     id: '005',
-    name: 'tit',
-    description: 'desc',
-    originalPrice: 'R$ 499,90',
-    price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    name: 'Fone de ouvido Bluetooth',
+    description: 'Fone de ouvido Bluetooth, modelo sem fio, com microfone embutido, bateria recarregável, compatível com dispositivos iOS e Android.',
+    originalPrice: 'R$ 89,90',
+    price: 'R$ 29,90',
+    images: 3,
     badge: 'Usado',
     sold: false
   },
@@ -56,7 +56,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 4,
     badge: 'Usado',
     sold: false
   },
@@ -66,7 +66,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 3,
     badge: 'Usado',
     sold: false
   },
@@ -76,7 +76,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 4,
     badge: 'Usado',
     sold: false
   },
@@ -86,7 +86,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 3,
     badge: 'Usado',
     sold: false
   },
@@ -96,7 +96,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 4,
     badge: 'Usado',
     sold: false
   },
@@ -106,7 +106,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 3,
     badge: 'Usado',
     sold: false
   },
@@ -116,7 +116,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 2,
     badge: 'Usado',
     sold: false
   },
@@ -126,7 +126,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 2,
     badge: 'Usado',
     sold: false
   },
@@ -136,7 +136,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 2,
     badge: 'Usado',
     sold: false
   },
@@ -146,7 +146,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 9,
     badge: 'Usado',
     sold: false
   },
@@ -156,7 +156,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 1,
     badge: 'Usado',
     sold: false
   },
@@ -166,7 +166,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 2,
     badge: 'Usado',
     sold: false
   },
@@ -176,7 +176,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 1,
     badge: 'Usado',
     sold: false
   },
@@ -186,7 +186,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 1,
     badge: 'Usado',
     sold: false
   },
@@ -196,7 +196,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 2,
     badge: 'Usado',
     sold: false
   },
@@ -206,7 +206,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 6,
     badge: 'Usado',
     sold: false
   },
@@ -216,7 +216,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 2,
     badge: 'Usado',
     sold: false
   },
@@ -226,7 +226,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 1,
     badge: 'Usado',
     sold: false
   },
@@ -236,7 +236,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 2,
     badge: 'Usado',
     sold: false
   },
@@ -246,7 +246,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 1,
     badge: 'Usado',
     sold: false
   },
@@ -256,7 +256,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 1,
     badge: 'Usado',
     sold: false
   },
@@ -266,7 +266,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 1,
     badge: 'Usado',
     sold: false
   },
@@ -276,7 +276,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 1,
     badge: 'Usado',
     sold: false
   },
@@ -286,7 +286,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 1,
     badge: 'Usado',
     sold: false
   },
@@ -296,7 +296,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 3,
     badge: 'Usado',
     sold: false
   },
@@ -306,7 +306,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 1,
     badge: 'Usado',
     sold: false
   },
@@ -316,7 +316,7 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 1,
     badge: 'Usado',
     sold: false
   },
@@ -326,11 +326,27 @@ const products = [
     description: 'desc',
     originalPrice: 'R$ 499,90',
     price: 'R$ 149,90',
-    images: ['assets/002-01.jpg', 'assets/002-02.jpg', 'assets/002-03.jpg'],
+    images: 2,
     badge: 'Usado',
     sold: false
   }
 ];
+
+// helper: construct image path from product id and zero-based index
+function getProductImageSrc(productId, index) {
+  const idx = String(index + 1).padStart(2, '0');
+  return `assets/${productId}-${idx}.jpg`;
+}
+
+// helper: fallback for broken images
+function applyImageFallback(img) {
+  function handler() {
+    // remove this handler to prevent loops
+    img.removeEventListener('error', handler);
+    img.src = 'assets/mega-sale.jpg';
+  }
+  img.addEventListener('error', handler);
+}
 
 // WhatsApp configuration
 const WHATSAPP_NUMBER = '5511967856887';
@@ -511,10 +527,17 @@ function createImageCarousel(product) {
     container.appendChild(badge);
   }
 
-  if (product.images.length === 1) {
+  const count = Array.isArray(product.images) ? product.images.length : (Number(product.images) || 0);
+
+  if (count <= 1) {
     const img = document.createElement('img');
     img.className = 'product-image';
-    img.src = product.images[0];
+    if (Array.isArray(product.images) && product.images[0]) {
+      img.src = product.images[0];
+    } else {
+      img.src = getProductImageSrc(product.id, 0);
+    }
+    applyImageFallback(img);
     img.alt = product.name;
     img.loading = 'lazy';
     container.appendChild(img);
@@ -525,20 +548,25 @@ function createImageCarousel(product) {
     let currentIndex = 0;
 
     // Create images
-    product.images.forEach((imgSrc, index) => {
+    for (let index = 0; index < count; index++) {
       const img = document.createElement('img');
       img.className = `carousel-image ${index === 0 ? 'active' : ''}`;
-      img.src = imgSrc;
+      if (Array.isArray(product.images) && product.images[index]) {
+        img.src = product.images[index];
+      } else {
+        img.src = getProductImageSrc(product.id, index);
+      }
+      applyImageFallback(img);
       img.alt = `${product.name} - Imagem ${index + 1}`;
       img.loading = 'lazy';
       carousel.appendChild(img);
-    });
+    }
 
     // Create dots
     const dotsContainer = document.createElement('div');
     dotsContainer.className = 'carousel-dots';
 
-    product.images.forEach((_, index) => {
+    for (let index = 0; index < count; index++) {
       const dot = document.createElement('button');
       dot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
       dot.setAttribute('aria-label', `Imagem ${index + 1}`);
@@ -547,14 +575,14 @@ function createImageCarousel(product) {
         showImage(index);
       });
       dotsContainer.appendChild(dot);
-    });
+    }
 
     carousel.appendChild(dotsContainer);
     container.appendChild(carousel);
 
     // Auto-rotate images
     let autoRotate = setInterval(() => {
-      currentIndex = (currentIndex + 1) % product.images.length;
+      currentIndex = (currentIndex + 1) % count;
       showImage(currentIndex);
     }, 3000);
 
@@ -565,7 +593,7 @@ function createImageCarousel(product) {
 
     carousel.addEventListener('mouseleave', () => {
       autoRotate = setInterval(() => {
-        currentIndex = (currentIndex + 1) % product.images.length;
+        currentIndex = (currentIndex + 1) % count;
         showImage(currentIndex);
       }, 3000);
     });
@@ -647,27 +675,33 @@ function openModal(product, startIndex = 0) {
   carouselContainer.className = 'modal-carousel';
 
   // Add images
-  product.images.forEach((imgSrc, index) => {
+  const count = Array.isArray(product.images) ? product.images.length : (Number(product.images) || 0);
+  for (let i = 0; i < count; i++) {
     const img = document.createElement('img');
-    img.className = `modal-carousel-image ${index === startIndex ? 'active' : ''}`;
-    img.src = imgSrc;
-    img.alt = `${product.name} - Imagem ${index + 1}`;
+    img.className = `modal-carousel-image ${i === startIndex ? 'active' : ''}`;
+    if (Array.isArray(product.images) && product.images[i]) {
+      img.src = product.images[i];
+    } else {
+      img.src = getProductImageSrc(product.id, i);
+    }
+    applyImageFallback(img);
+    img.alt = `${product.name} - Imagem ${i + 1}`;
     carouselContainer.appendChild(img);
-  });
+  }
 
   // Navigation buttons (only if multiple images)
-  if (product.images.length > 1) {
+  if (count > 1) {
     const prevBtn = document.createElement('button');
     prevBtn.className = 'modal-carousel-nav prev';
     prevBtn.innerHTML = '‹';
     prevBtn.setAttribute('aria-label', 'Imagem anterior');
-    prevBtn.addEventListener('click', () => navigateModal(-1, product.images.length));
+    prevBtn.addEventListener('click', () => navigateModal(-1, count));
 
     const nextBtn = document.createElement('button');
     nextBtn.className = 'modal-carousel-nav next';
     nextBtn.innerHTML = '›';
     nextBtn.setAttribute('aria-label', 'Próxima imagem');
-    nextBtn.addEventListener('click', () => navigateModal(1, product.images.length));
+    nextBtn.addEventListener('click', () => navigateModal(1, count));
 
     carouselContainer.appendChild(prevBtn);
     carouselContainer.appendChild(nextBtn);
@@ -676,13 +710,13 @@ function openModal(product, startIndex = 0) {
     const dotsContainer = document.createElement('div');
     dotsContainer.className = 'modal-carousel-dots';
 
-    product.images.forEach((_, index) => {
+    for (let i = 0; i < count; i++) {
       const dot = document.createElement('button');
-      dot.className = `modal-carousel-dot ${index === startIndex ? 'active' : ''}`;
-      dot.setAttribute('aria-label', `Ir para imagem ${index + 1}`);
-      dot.addEventListener('click', () => goToModalImage(index, product.images.length));
+      dot.className = `modal-carousel-dot ${i === startIndex ? 'active' : ''}`;
+      dot.setAttribute('aria-label', `Ir para imagem ${i + 1}`);
+      dot.addEventListener('click', () => goToModalImage(i, count));
       dotsContainer.appendChild(dot);
-    });
+    }
 
     carouselContainer.appendChild(dotsContainer);
   }
@@ -802,8 +836,8 @@ function openModal(product, startIndex = 0) {
   document.addEventListener('keydown', handleModalKeyboard);
 
   // Auto-rotate if multiple images
-  if (product.images.length > 1) {
-    startModalAutoRotate(product.images.length);
+  if (count > 1) {
+    startModalAutoRotate(count);
   }
 }
 
