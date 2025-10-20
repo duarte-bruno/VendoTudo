@@ -75,7 +75,7 @@ const products = [
     name: 'Climatizador de Ar Portátil',
     description: 'Climatizador e ventilador de Ar Portátil, 3 em 1, tanque de água de 4 litros',
     originalPrice: 'R$ 619,90',
-    price: 'R$ 199,90',
+    price: 'R$ 299,90',
     images: 4,
     badge: 'Usado',
     sold: false
@@ -87,7 +87,7 @@ const products = [
     originalPrice: 'R$ 199,90',
     price: 'R$ 59,90',
     images: 3,
-    badge: 'Usado',
+    badge: 'Quase novo',
     sold: false
   },
   {
@@ -96,7 +96,7 @@ const products = [
     description: 'Assento elevatório Chicco para alimentação portátil, dobrável, com cinto de segurança, cor cinza, 3 nídeis de altura.',
     originalPrice: 'R$ 299,90',
     price: 'R$ 99,90',
-    images: 4,
+    images: 5,
     badge: 'Quase novo',
     sold: false
   },
@@ -155,7 +155,7 @@ const products = [
     name: 'Cadeixa de escritório off-white',
     description: 'Cadeixa de escritório off-white com estrutura em metal.',
     originalPrice: 'R$ 699,90',
-    price: 'R$ 99,90',
+    price: 'R$ 199,90',
     images: 1,
     badge: 'Usado',
     sold: false
@@ -214,7 +214,7 @@ const products = [
     id: '022',
     name: 'Kit berço 300 fios',
     description: 'Kit berço 300 fios inisex com 4 almofadas decorativas e 1 trocador.',
-    originalPrice: 'R$ 499,90',
+    originalPrice: 'R$ 999,90',
     price: 'R$ 99,90',
     images: 2,
     badge: 'Usado',
@@ -247,7 +247,7 @@ const products = [
     originalPrice: 'R$ 90,00',
     price: 'R$ 19,90',
     images: 1,
-    badge: 'Usado',
+    badge: 'Quase novo',
     sold: false
   },
   {
@@ -257,7 +257,7 @@ const products = [
     originalPrice: 'R$ 199,90',
     price: 'R$ 99,90',
     images: 1,
-    badge: 'Usado',
+    badge: 'Quase novo',
     sold: false
   },
   {
@@ -267,7 +267,7 @@ const products = [
     originalPrice: 'R$ 45,90',
     price: 'R$ 14,90',
     images: 1,
-    badge: 'Usado',
+    badge: 'Quase novo',
     sold: false
   },
   {
@@ -275,9 +275,9 @@ const products = [
     name: 'Livro diagnósticos enfermagem da NANDA',
     description: 'Livro diagnósticos enfermagem da NANDA',
     originalPrice: 'R$ 147,90',
-    price: 'R$ 49,90',
+    price: 'R$ 19,90',
     images: 1,
-    badge: 'Usado',
+    badge: 'Quase novo',
     sold: false
   },
   {
@@ -287,7 +287,7 @@ const products = [
     originalPrice: 'R$ 35,90',
     price: 'R$ 9,90',
     images: 1,
-    badge: 'Usado',
+    badge: 'Quase novo',
     sold: false
   },
   {
