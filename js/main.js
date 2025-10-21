@@ -108,7 +108,7 @@ const products = [
     price: 'R$ 39,90',
     images: 3,
     badge: 'Usado',
-    sold: false
+    sold: true
   },
   {
     id: '012',
@@ -208,7 +208,7 @@ const products = [
     price: 'R$ 49,90',
     images: 6,
     badge: 'Usado',
-    sold: false
+    sold: true
   },
   {
     id: '022',
@@ -328,7 +328,7 @@ const products = [
     price: 'R$ 19,90',
     images: 2,
     badge: 'Usado',
-    sold: false
+    sold: true
   }
 ];
 
