@@ -38,7 +38,7 @@ const products = [
     price: 'R$ 89,90',
     images: 4,
     badge: 'Usado',
-    sold: false
+    sold: true
   },
   {
     id: '005',
