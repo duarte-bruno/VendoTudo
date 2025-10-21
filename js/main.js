@@ -28,7 +28,7 @@ const products = [
     price: 'R$ 69,90',
     images: 4,
     badge: 'Quase novo',
-    sold: false
+    sold: true
   },
   {
     id: '004',
