@@ -335,7 +335,7 @@ const products = [
 // helper: construct image path from product id and zero-based index
 function getProductImageSrc(productId, index) {
   const idx = String(index + 1).padStart(2, '0');
-  return `assets/${productId}-${idx}.jpg`;
+  return `assets/${productId}-${idx}.jpeg`;
 }
 
 // helper: fallback for broken images
@@ -343,7 +343,7 @@ function applyImageFallback(img) {
   function handler() {
     // remove this handler to prevent loops
     img.removeEventListener('error', handler);
-    img.src = 'assets/mega-sale.jpg';
+    img.src = 'assets/mega-sale.jpeg';
   }
   img.addEventListener('error', handler);
 }
