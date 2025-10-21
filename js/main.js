@@ -302,8 +302,8 @@ const products = [
   },
   {
     id: '031',
-    name: 'Tapete Educativo Infantil Colorido',
-    description: 'Tapete Educativo Infantil Colorido Alfanumérico (algumas peças faltando)',
+    name: 'Kit de Tapete Educativo Infantil Colorido',
+    description: 'Kit de Tapete Educativo Infantil Colorido Alfanumérico (algumas peças faltando)',
     originalPrice: 'R$ 99,90',
     price: 'R$ 29,90',
     images: 1,
